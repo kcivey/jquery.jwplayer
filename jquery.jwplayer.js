@@ -133,6 +133,9 @@ $.fn.jwPlayer = function (opts) {
         if (index) {
             id += '-' + index;
         }
+        if ($('#' + id).length) {
+            $.error('id "' + id + '" already exists in document');
+        }
         if (opts.flashvars.playlistfile) {
             if (!opts.flashvars.playlist) {
                  opts.flashvars.playlist = 'bottom';
