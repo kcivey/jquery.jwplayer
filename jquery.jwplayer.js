@@ -6,8 +6,10 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.104 (2010-04-13)
+Version 0.105 (2010-04-26)
 */
+
+var pluginName = 'jwPlayer';
 
 var eventType = {
     ITEM: 'Controller',
@@ -84,7 +86,7 @@ var flashvarNames = [
 function getFunctionName(base) {
     var name, i = 0;
     while (true) {
-        name = 'jwPlayer_' + base;
+        name = pluginName + '_' + base;
         if (i) {
             name += i;
         }
@@ -95,19 +97,19 @@ function getFunctionName(base) {
     }
 }
 
-$.fn.jwPlayer = function (opts) {
+$.fn[pluginName] = function (opts) {
     var fn, args, data, prop;
     if (typeof opts == 'string') { // it's a method name
-        fn = $.fn.jwPlayer[opts];
+        fn = $.fn[pluginName][opts];
         if (!fn) {
-            throw('No such method: jwPlayer.' + opts);
+            throw('No such method: ' + pluginName + '.' + opts);
         }
         args = $.makeArray(arguments).slice(1);
-        data = this.data('jwPlayerData');
+        data = this.data(pluginName);
         args.unshift(data);
         return fn.apply(this, args);
     }
-    opts = $.extend({}, $.fn.jwPlayer.defaults, opts);
+    opts = $.extend({}, $.fn[pluginName].defaults, opts);
     // put flashvars into subobject
     for (prop in opts) {
         if ($.inArray(prop, flashvarNames) != -1) {
@@ -149,14 +151,14 @@ $.fn.jwPlayer = function (opts) {
             return function (obj) {
                 var n, seek;
                 for (n in propMap) {
-                    $this.jwPlayer('set', propMap[n], obj[n]);
+                    $this[pluginName]('set', propMap[n], obj[n]);
                 }
                 if (listenerName == 'statelistener') {
-                    seek = $this.jwPlayer('get', 'seek');
+                    seek = $this[pluginName]('get', 'seek');
                     if ((obj.newstate == 'PAUSED' ||
                         obj.newstate == 'PLAYING') && seek !== false) {
-                        $this.jwPlayer('set', 'seek', false);
-                        $this.jwPlayer('seek', seek);
+                        $this[pluginName]('set', 'seek', false);
+                        $this[pluginName]('seek', seek);
                     }
                 }
                 if (opts[listenerName]) {
@@ -197,10 +199,10 @@ $.fn.jwPlayer = function (opts) {
                 seek: false, // queued seek position
                 volume: null
             };
-            $this.data('jwPlayerData', data);
+            $this.data(pluginName, data);
             var eventName;
             for (eventName in listeners) {
-                $this.jwPlayer('addListener', eventName, listeners[eventName]);
+                $this[pluginName]('addListener', eventName, listeners[eventName]);
             }
             if (extraPlayerready) {
                 extraPlayerready(obj);
@@ -225,10 +227,10 @@ $.fn.jwPlayer = function (opts) {
     } );
 };
 
-$.extend($.fn.jwPlayer, {
+$.extend($.fn[pluginName], {
     defaults: {
         flashvars: {},
-        id: 'jwplayer',
+        id: pluginName,
         swf: '/common/flash/player5.swf',
         wmode: 'opaque'
     },
@@ -315,7 +317,7 @@ $.extend($.fn.jwPlayer, {
         if (!position) {
             position = 0.001; // weird bug when seeking to 0
         }
-        state = this.jwPlayer('get', 'state');
+        state = this[pluginName]('get', 'state');
         console.log('state', state);
         if (state == 'PLAYING' || state == 'PAUSED') {
             data.obj.sendEvent('SEEK', position);
