@@ -9,17 +9,8 @@ Usage
 Constructor
 -----------
 
-    $('#container').jwPlayer(_options_);
+    $('#container').jwPlayer(options);
 
-set
----
-
-    $('#container').jwPlayer('set', property, value);
-
-get
----
-
-    $('#container').jwPlayer('get', property);
 
 item
 ----
