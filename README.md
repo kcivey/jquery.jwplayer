@@ -14,22 +14,22 @@ Constructor
 set
 ---
 
-    $('#container').jwPlayer('set', _property_, _value_);
+    $('#container').jwPlayer('set', property, value);
 
 get
 ---
 
-    $('#container').jwPlayer('get', _property_);
+    $('#container').jwPlayer('get', property);
 
 item
 ----
 
-    $('#container').jwPlayer('item', _itemNumber_);
+    $('#container').jwPlayer('item', itemNumber);
 
 load
 ----
 
-    $('#container').jwPlayer('load', _filename_);
+    $('#container').jwPlayer('load', filename);
 
 mute
 ----
@@ -79,7 +79,7 @@ redraw
 seek
 ----
 
-    $('#container').jwPlayer('seek', _position_);
+    $('#container').jwPlayer('seek', position);
 
 stop
 ----
@@ -89,17 +89,19 @@ stop
 volume
 ------
 
-    $('#container').jwPlayer('volume', _level_);
+    $('#container').jwPlayer('volume', level);
 
 getConfig
 ---------
 
-    $('#container').jwPlayer('getConfig', [_property_]);
+    $('#container').jwPlayer('getConfig');
+    $('#container').jwPlayer('getConfig', property);
 
 getPlaylist
 -----------
 
-    $('#container').jwPlayer('getPlaylist', [_itemNumber_]);
+    $('#container').jwPlayer('getPlaylist');
+    $('#container').jwPlayer('getPlaylist', itemNumber);
 
 destroy
 -------
