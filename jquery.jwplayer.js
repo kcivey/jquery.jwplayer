@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.105 (2010-04-26)
+Version 0.106 (2010-04-28)
 */
 
 var pluginName = 'jwPlayer';
@@ -366,6 +366,11 @@ $.extend($.fn[pluginName], {
             callback = fnName;
         }
         return data.obj[method](eventName, callback);
+    },
+
+    destroy: function () {
+        console.log('jwPlayer.destroy');
+        $(this).removeData(pluginName).empty();
     }
 
 });
