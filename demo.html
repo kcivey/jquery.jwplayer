@@ -8,18 +8,30 @@
 <script type="text/javascript" src="jquery.swfobject.js"></script>
 <script type="text/javascript" src="jquery.jwplayer.js"></script>
 <script type="text/javascript">
-    jQuery(function ($) {
-        $('#player_container').jwPlayer({
-            swf: 'player.swf',
-            file: 'video.flv',
-            image: 'preview.jpg',
-            height: 240,
-            width: 320
-        });
+jQuery(function ($) {
+
+    $('#player1').jwPlayer({
+        swf: 'player.swf',
+        file: 'video.flv',
+        image: 'preview.jpg',
+        height: 240,
+        width: 320
     });
+
+    $('#play_button').click(
+        function () { $('#player1').jwPlayer('play'); }
+    );
+
+    $('#pause_button').click(
+        function () { $('#player1').jwPlayer('pause'); }
+    );
+
+});
 </script>
 </head>
 <body>
-<div id="player_container"></div>
+<div id="player1"></div>
+<button id="play_button">Play</button>
+<button id="pause_button">Pause</button>
 </body>
 </html>
