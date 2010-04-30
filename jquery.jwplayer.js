@@ -11,6 +11,9 @@ Version 0.106 (2010-04-28)
 
 var pluginName = 'jwPlayer';
 
+// Prevent errors from console.log calls
+if (!console) { console = {}; } if (!console.log) { console.log = $.noop };
+
 var eventType = {
     ITEM: 'Controller',
     MUTE: 'Controller',
