@@ -12,8 +12,8 @@ jQuery(function ($) {
 
     $('#player1').jwPlayer({
         swf: 'player.swf',
-        file: 'video.flv',
-        image: 'preview.jpg',
+        file: 'http://www.youtube.com/watch?v=rcyzubFvBsA',
+        image: 'http://i.ytimg.com/vi/rcyzubFvBsA/0.jpg',
         height: 240,
         width: 320
     });
@@ -26,6 +26,20 @@ jQuery(function ($) {
         function () { $('#player1').jwPlayer('pause'); }
     );
 
+    $('#back_button').click(
+        function () {
+            var position = $('#player1').jwPlayer('get', 'position');
+            $('#player1').jwPlayer('seek', position - 10);
+        }
+    );
+
+    $('#forward_button').click(
+        function () {
+            var position = $('#player1').jwPlayer('get', 'position');
+            $('#player1').jwPlayer('seek', position + 10);
+        }
+    );
+
 });
 </script>
 </head>
@@ -33,5 +47,7 @@ jQuery(function ($) {
 <div id="player1"></div>
 <button id="play_button">Play</button>
 <button id="pause_button">Pause</button>
+<button id="back_button">Back</button>
+<button id="forward_button">Forward</button>
 </body>
 </html>
