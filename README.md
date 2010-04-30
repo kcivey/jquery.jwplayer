@@ -16,6 +16,7 @@ the Flash player.  Possible properties include
 
 * _swf:_ the URL for the JW Player (defaults to "player.swf", so you'll almost
   certainly want to change it)
+* _id:_ the id for the JW Player object (defaults to "jwPlayer")
 * _height:_ height for JW Player object (treated as pixels if a number;
   defaults to 240)
 * _width:_ width for JW Player object (treated as pixels if a number;

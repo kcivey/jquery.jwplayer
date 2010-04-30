@@ -136,14 +136,6 @@ $.fn[pluginName] = function (opts) {
         if ($('#' + id).length) {
             $.error('id "' + id + '" already exists in document');
         }
-        if (opts.flashvars.playlistfile) {
-            if (!opts.flashvars.playlist) {
-                 opts.flashvars.playlist = 'bottom';
-            }
-            if (!opts.flashvars.playlistsize) {
-                opts.flashvars.playlistsize = 200;
-            }
-        }
 
         function makeListener(propMap, listenerName) {
             return function (obj) {
