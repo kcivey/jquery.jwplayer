@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.106 (2010-04-28)
+Version 0.107 (2010-04-30)
 */
 
 var pluginName = 'jwPlayer';
@@ -120,16 +120,11 @@ $.fn[pluginName] = function (opts) {
             delete opts[prop]; 
         }
     }
-    if (!opts.height) {
-        opts.height = this.height() ? '100%' : '480px';
-    }
-    else if (opts.height.toString().match(/^[0-9]+$/)) {
+    // Convert integers to pixels
+    if (opts.height.toString().match(/^[0-9]+$/)) {
         opts.height += 'px';
     }
-    if (!opts.width) {
-        opts.width = this.width() ? '100%' : '640px';
-    }
-    else if (opts.width.toString().match(/^[0-9]+$/)) {
+    if (opts.width.toString().match(/^[0-9]+$/)) {
         opts.width += 'px';
     }
     return this.each( function (index) {
@@ -233,6 +228,8 @@ $.fn[pluginName] = function (opts) {
 $.extend($.fn[pluginName], {
     defaults: {
         flashvars: {},
+        height: 240,
+        width: 320,
         id: pluginName,
         swf: 'player.swf',
         wmode: 'opaque'
