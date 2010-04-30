@@ -234,7 +234,7 @@ $.extend($.fn[pluginName], {
     defaults: {
         flashvars: {},
         id: pluginName,
-        swf: '/common/flash/player5.swf',
+        swf: 'player.swf',
         wmode: 'opaque'
     },
 
