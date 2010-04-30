@@ -11,6 +11,15 @@ Constructor
 
     $('#container').jwPlayer(options);
 
+set
+---
+
+    $('#container').jwPlayer('set', property, value);
+
+get
+---
+
+    $('#container').jwPlayer('get', property);
 
 item
 ----
