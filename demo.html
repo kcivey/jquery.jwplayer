@@ -10,12 +10,23 @@
 <script type="text/javascript">
 jQuery(function ($) {
 
+    function stateListener(obj) {
+        $('#state_change').text(obj.oldstate + ' -> ' + obj.newstate);
+    }
+
+    function timeListener(obj) {
+        $('#position').text(obj.position);
+    }
+
     $('#player1').jwPlayer({
+        //debug: 'console',
         swf: 'player.swf',
         file: 'http://www.youtube.com/watch?v=rcyzubFvBsA',
         image: 'http://i.ytimg.com/vi/rcyzubFvBsA/0.jpg',
         height: 240,
-        width: 320
+        width: 320,
+        timelistener: timeListener,
+        statelistener: stateListener
     });
 
     $('#play_button').click(
@@ -49,5 +60,7 @@ jQuery(function ($) {
 <button id="pause_button">Pause</button>
 <button id="back_button">Back</button>
 <button id="forward_button">Forward</button>
+<p>State: <span id="state_change"></span></p>
+<p>Position: <span id="position"></span> sec</p>
 </body>
 </html>
