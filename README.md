@@ -102,75 +102,103 @@ get
 
     $('#container').jwPlayer('get', property);
 
+Get value of a property out of the jQuery.jwPlayer object data.  Properties
+include
+
+* _obj:_ the DOM object corresponding to the Flash object
+* _duration:_ the duration of the media, in seconds
+* _item:_ current playlist item (starting with 0) _(may not be necessary, since
+  `.jwPlayer('getConfig', 'item')` should give the same)_
+* _state:_ current playback state ((IDLE, BUFFERING, PLAYING, PAUSED, COMPLETED)
+* _position:_ current position, in seconds
+* _volume:_ current volume level, on scale of 0 to 100 _(may not be necessary,
+  since `.jwPlayer('getConfig', 'volume')` should give the same)_
+
 item
 ----
 
     $('#container').jwPlayer('item', itemNumber);
+
+Select an item from the playlist, with itemNumber starting from 0.
 
 load
 ----
 
     $('#container').jwPlayer('load', filename);
 
+Load a new file or playlist.
+
 mute
 ----
 
     $('#container').jwPlayer('mute');
+
+Toggle mute state _(probably need to change to mute/unmute/toggleMute)_.
 
 next
 ----
 
     $('#container').jwPlayer('next');
 
+Move to the next playlist item.
+
 pause
 -----
 
     $('#container').jwPlayer('pause');
+
+Pause playing.
 
 play
 ----
 
     $('#container').jwPlayer('play');
 
-resume
-------
-
-    $('#container').jwPlayer('resume');
-
-start
------
-
-    $('#container').jwPlayer('start');
+Start playing from current position.
 
 togglePlay
 ----------
 
     $('#container').jwPlayer('togglePlay');
 
+If paused, start playing from current position.  If playing, pause.
+
 prev
 ----
 
     $('#container').jwPlayer('prev');
+
+Move to the previous playlist item.
 
 redraw
 ------
 
     $('#container').jwPlayer('redraw');
 
+Redraw the player.
+
 seek
 ----
 
     $('#container').jwPlayer('seek', position);
+
+Seek to a particular position in seconds.  The plugin uses a state listener
+to handle seek commands sent when the player is not in a state in which it
+can do seeking.
 
 stop
 ----
 
     $('#container').jwPlayer('stop');
 
+Stop playing and set state to IDLE and position to 0.
+
 volume
 ------
 
     $('#container').jwPlayer('volume', level);
+
+Set the volume.  Level is on a scale of 0 to 100.
 
 getConfig
 ---------
@@ -178,16 +206,31 @@ getConfig
     $('#container').jwPlayer('getConfig');
     $('#container').jwPlayer('getConfig', property);
 
+Get the config data (flashvars) -- either all of it as an object (if no
+argument is passed) or the value of one property (if the property name is
+passed).
+
 getPlaylist
 -----------
 
     $('#container').jwPlayer('getPlaylist');
     $('#container').jwPlayer('getPlaylist', itemNumber);
 
+Get the playlist data as an array of objects (if no argument is passed) or as
+an object corresponding to a single playlist item (if itemNumber is
+passed).  The item number is 0-based.
+
 destroy
 -------
 
     $('#container').jwPlayer('destroy');
+
+Removes the Flash object from the container, along with the associated data.
+
+Demo
+====
+
+See [http://kcivey.github.com/jquery.jwplayer/demo.html](http://kcivey.github.com/jquery.jwplayer/demo.html).
 
 Author
 ======
