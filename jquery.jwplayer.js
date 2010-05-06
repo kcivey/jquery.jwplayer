@@ -199,7 +199,7 @@ $.fn[pluginName] = function (opts) {
             }
         };
         opts.flashvars.playerready = fnName;
-        $this.flash( {
+        $this.empty().flash( {
             swf: opts.swf,
             id: id,
             name: id,
