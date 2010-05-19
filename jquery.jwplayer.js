@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.107 (2010-04-30)
+Version 0.108 (2010-05-19)
 */
 
 var pluginName = 'jwPlayer';
@@ -177,6 +177,8 @@ $.fn[pluginName] = function (opts) {
         // that was passed in the options, if there is one.
         var fnName = getFunctionName('playerReady');
         var extraPlayerready = opts.flashvars.playerready;
+        var autostart = opts.flashvars.autostart &&
+            opts.flashvars.autostart != 'false';
         window[fnName] = function (obj) {
             console.log(fnName + '()', arguments);
             // Store player object (DOM node) in data() of jQuery object
@@ -196,6 +198,11 @@ $.fn[pluginName] = function (opts) {
             }
             if (extraPlayerready) {
                 extraPlayerready(obj);
+            }
+            if (!autostart) {
+                // Play and pause to get media loading so seek will work
+                data.obj.sendEvent('PLAY', 'true');
+                data.obj.sendEvent('PLAY', 'false');
             }
         };
         opts.flashvars.playerready = fnName;
