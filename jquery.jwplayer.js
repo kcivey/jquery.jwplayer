@@ -6,10 +6,13 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.106 (2010-04-28)
+Version 0.109 (2010-05-19)
 */
 
 var pluginName = 'jwPlayer';
+
+// Prevent errors from console.log calls
+if (!console) { console = {}; } if (!console.log) { console.log = $.noop };
 
 var eventType = {
     ITEM: 'Controller',
@@ -117,16 +120,11 @@ $.fn[pluginName] = function (opts) {
             delete opts[prop]; 
         }
     }
-    if (!opts.height) {
-        opts.height = this.height() ? '100%' : '480px';
-    }
-    else if (opts.height.toString().match(/^[0-9]+$/)) {
+    // Convert integers to pixels
+    if (opts.height.toString().match(/^[0-9]+$/)) {
         opts.height += 'px';
     }
-    if (!opts.width) {
-        opts.width = this.width() ? '100%' : '640px';
-    }
-    else if (opts.width.toString().match(/^[0-9]+$/)) {
+    if (opts.width.toString().match(/^[0-9]+$/)) {
         opts.width += 'px';
     }
     return this.each( function (index) {
@@ -137,14 +135,6 @@ $.fn[pluginName] = function (opts) {
         }
         if ($('#' + id).length) {
             $.error('id "' + id + '" already exists in document');
-        }
-        if (opts.flashvars.playlistfile) {
-            if (!opts.flashvars.playlist) {
-                 opts.flashvars.playlist = 'bottom';
-            }
-            if (!opts.flashvars.playlistsize) {
-                opts.flashvars.playlistsize = 200;
-            }
         }
 
         function makeListener(propMap, listenerName) {
@@ -209,7 +199,7 @@ $.fn[pluginName] = function (opts) {
             }
         };
         opts.flashvars.playerready = fnName;
-        $this.flash( {
+        $this.empty().flash( {
             swf: opts.swf,
             id: id,
             name: id,
@@ -230,8 +220,10 @@ $.fn[pluginName] = function (opts) {
 $.extend($.fn[pluginName], {
     defaults: {
         flashvars: {},
+        height: 240,
+        width: 320,
         id: pluginName,
-        swf: '/common/flash/player5.swf',
+        swf: 'player.swf',
         wmode: 'opaque'
     },
 
