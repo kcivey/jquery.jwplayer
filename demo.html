@@ -18,6 +18,11 @@ jQuery(function ($) {
         $('#position').text(obj.position);
     }
 
+    function playerReady() {
+        // Enable buttons when player is ready
+        $('button').removeAttr('disabled');
+    }
+
     $('#player1').jwPlayer({
         //debug: 'console',
         swf: 'player.swf',
@@ -25,6 +30,7 @@ jQuery(function ($) {
         image: 'http://i.ytimg.com/vi/rcyzubFvBsA/0.jpg',
         height: 240,
         width: 320,
+        playerready: playerReady,
         timelistener: timeListener,
         statelistener: stateListener
     });
@@ -56,10 +62,10 @@ jQuery(function ($) {
 </head>
 <body>
 <div id="player1"></div>
-<button id="play_button">Play</button>
-<button id="pause_button">Pause</button>
-<button id="back_button">Back</button>
-<button id="forward_button">Forward</button>
+<button id="play_button" disabled="disabled">Play</button>
+<button id="pause_button" disabled="disabled">Pause</button>
+<button id="back_button" disabled="disabled">Back</button>
+<button id="forward_button" disabled="disabled">Forward</button>
 <p>State: <span id="state_change"></span></p>
 <p>Position: <span id="position"></span> sec</p>
 </body>
