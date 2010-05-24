@@ -6,13 +6,13 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.109 (2010-05-19)
+Version 0.110 (2010-05-24)
 */
 
 var pluginName = 'jwPlayer';
 
-// Prevent errors from console.log calls
-if (!console) { console = {}; } if (!console.log) { console.log = $.noop };
+if (!window.console) { console = {}; } // prevent errors from console.log calls
+if (!console.log) { console.log = $.noop; }
 
 var eventType = {
     ITEM: 'Controller',
