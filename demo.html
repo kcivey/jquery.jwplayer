@@ -18,9 +18,13 @@ jQuery(function ($) {
         $('#position').text(obj.position);
     }
 
-    function playerReady() {
+    function playerReady1(obj) {
         // Enable buttons when player is ready
         $('button').removeAttr('disabled');
+    }
+
+    function playerReady2(obj) {
+        console.log('Player ', obj.id, ' is ready.');
     }
 
     $('#player1').jwPlayer({
@@ -30,7 +34,7 @@ jQuery(function ($) {
         image: 'http://i.ytimg.com/vi/rcyzubFvBsA/0.jpg',
         height: 240,
         width: 320,
-        playerready: playerReady,
+        playerready: playerReady1,
         timelistener: timeListener,
         statelistener: stateListener
     });
@@ -57,6 +61,17 @@ jQuery(function ($) {
         }
     );
 
+    $('#player2').jwPlayer({
+        //debug: 'console',
+        id: 'jwPlayer2',
+        swf: 'player.swf',
+        file: 'video.flv',
+        image: 'preview.jpg',
+        height: 180,
+        width: 240,
+        playerready: playerReady2
+    });
+
 });
 </script>
 </head>
@@ -68,5 +83,6 @@ jQuery(function ($) {
 <button id="forward_button" disabled="disabled">Forward</button>
 <p>State: <span id="state_change"></span></p>
 <p>Position: <span id="position"></span> sec</p>
+<div id="player2"></div>
 </body>
 </html>
