@@ -194,10 +194,10 @@ $.fn[pluginName] = function (opts) {
             for (eventName in listeners) {
                 $this[pluginName]('addListener', eventName, listeners[eventName]);
             }
+            $this.addClass(pluginName); // to signal it's finished
             if (extraPlayerready) {
                 extraPlayerready(obj);
             }
-            $this.addClass(pluginName); // to signal it's finished
         };
         opts.flashvars.playerready = fnName;
         $this.empty().flash( {
