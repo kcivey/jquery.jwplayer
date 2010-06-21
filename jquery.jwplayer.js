@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.111 (2010-06-03)
+Version 0.112 (2010-06-21)
 */
 
 var pluginName = 'jwPlayer';
@@ -194,10 +194,10 @@ $.fn[pluginName] = function (opts) {
             for (eventName in listeners) {
                 $this[pluginName]('addListener', eventName, listeners[eventName]);
             }
+            $this.addClass(pluginName); // to signal it's finished
             if (extraPlayerready) {
                 extraPlayerready(obj);
             }
-            $this.addClass(pluginName); // to signal it's finished
         };
         opts.flashvars.playerready = fnName;
         $this.empty().flash( {
