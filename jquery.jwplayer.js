@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.112 (2010-06-21)
+Version 0.113 (2010-07-23)
 */
 
 var pluginName = 'jwPlayer';
@@ -200,7 +200,7 @@ $.fn[pluginName] = function (opts) {
             }
         };
         opts.flashvars.playerready = fnName;
-        $this.empty().flash( {
+        $this.flash( {
             swf: opts.swf,
             id: id,
             name: id,
