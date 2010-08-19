@@ -6,7 +6,7 @@ Copyright 2010, Smokescreen Corporation
 Dual licensed under the MIT and GPL licenses
 http://www.opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
-Version 0.114 (2010-07-24)
+Version 0.115 (2010-08-18)
 */
 
 var pluginName = 'jwPlayer';
@@ -109,6 +109,9 @@ $.fn[pluginName] = function (opts) {
         }
         args = $.makeArray(arguments).slice(1);
         data = this.data(pluginName);
+        if (!data) {
+            throw('Constructor not called: ' + pluginName + '.' + opts);
+        }
         args.unshift(data);
         return fn.apply(this, args);
     }
